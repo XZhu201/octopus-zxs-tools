@@ -1,2 +1,4 @@
 # octopus-zxs-tools
- useful tools for octopus input/output
+Useful tools for octopus input/output.
+
+I am new to python. Some codes may not be efficient!
