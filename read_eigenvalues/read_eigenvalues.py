@@ -18,6 +18,7 @@ import scipy.io as sio
 
 ########## import date ##########
 filename = 'eigenvalues'
+savename = filename + '.mat'
 
 state, energy = np.loadtxt(filename, dtype='double', skiprows=5, usecols=(0,2), unpack=True)
 
@@ -70,4 +71,4 @@ plt.savefig('Figure1.png',dpi=150,bbox_inches='tight')
 plt.close()
 
 ########## save data ##########
-sio.savemat('saveddata.mat', {'state': state,'energy': energy}) 
+sio.savemat(savename, {'state': state,'energy': energy}) 
