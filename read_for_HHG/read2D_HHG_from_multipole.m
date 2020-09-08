@@ -79,8 +79,8 @@ plot3(t/T0, acc_x, acc_y);
 xlabel('t/T'); ylabel('acc x'); zlabel('acc y');
 grid on;
 
-saveas(gcf,'./svFigs/acc','fig')
-saveas(gcf,'./svFigs/acc','png')
+saveas(gcf,'./svFigs/acc_xy','fig')
+saveas(gcf,'./svFigs/acc_xy','png')
 
 
 %% acc in +-
@@ -94,8 +94,8 @@ xlabel('t/T')
 
 title(strcat(str,'acc in +-'))
 
-saveas(gcf,'./svFigs/acc_in_pm','fig')
-saveas(gcf,'./svFigs/acc_in_pm','png')
+saveas(gcf,'./svFigs/acc_pm','fig')
+saveas(gcf,'./svFigs/acc_pm','png')
 
 
 %% HHS in xy
@@ -154,8 +154,8 @@ title(strcat(str,'HHS in +-'));
 legend('+','-','+ & -');
 xlim([0,60])
 
-saveas(gcf,'./svFigs/HHS_+-','fig')
-saveas(gcf,'./svFigs/HHS_+-','png')
+saveas(gcf,'./svFigs/HHS_pm','fig')
+saveas(gcf,'./svFigs/HHS_pm','png')
 
 % ---- phase ----
 phase_p = angle(fft_p)/pi;
