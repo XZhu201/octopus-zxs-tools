@@ -154,8 +154,8 @@ title(strcat(str,'HHS in +-'));
 legend('+','-','+ & -');
 xlim([0,60])
 
-saveas(gcf,'./svFigs/HHS_xy','fig')
-saveas(gcf,'./svFigs/HHS_xy','png')
+saveas(gcf,'./svFigs/HHS_+-','fig')
+saveas(gcf,'./svFigs/HHS_+-','png')
 
 % ---- phase ----
 phase_p = angle(fft_p)/pi;
@@ -174,13 +174,13 @@ saveas(gcf,'./svFigs/phase_w_pm','fig')
 saveas(gcf,'./svFigs/phase_w_pm','png')
 
 
-%% sp
-dw = w(2)-w(1);
-Gabor_fft(w0,3,dt,dw,acc_x,0,80,'x');
-Gabor_fft(w0,3,dt,dw,acc_y,0,80,'y');
-
-Gabor_fft(w0,3,dt,dw,acc_p,0,80,'p');
-Gabor_fft(w0,3,dt,dw,acc_m,0,80,'m');
+% %% sp
+% dw = w(2)-w(1);
+% Gabor_fft(w0,3,dt,dw,acc_x,0,80,'x');
+% Gabor_fft(w0,3,dt,dw,acc_y,0,80,'y');
+% 
+% Gabor_fft(w0,3,dt,dw,acc_p,0,80,'p');
+% Gabor_fft(w0,3,dt,dw,acc_m,0,80,'m');
 
 %% save
-save Ar.mat t w0 *_x *_y *_p *_m HHS
+save N2.mat t w w0 *_x *_y *_p *_m HHS
