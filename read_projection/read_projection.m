@@ -1,8 +1,6 @@
-% This is fast and good~
-% extract the data from the .cube file
 % All the data are saved in the structure struct_proj
 
-% about the use of "dynamic expression" with structure can be seen here:
+% About the use of "dynamic expression" with structure, see:
 % https://ww2.mathworks.cn/help/matlab/matlab_prog/string-evaluation.html
 % https://ww2.mathworks.cn/help/matlab/matlab_prog/generate-field-names-from-variables.html
 
