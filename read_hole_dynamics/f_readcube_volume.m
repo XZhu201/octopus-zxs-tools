@@ -44,6 +44,7 @@ Nz = str2double(templine{Nwords-3}) ;
 dz = str2double(templine{Nwords}) ;
 
 disp('xmin,Nx,dx;ymin,Ny,dy;zmin,Nz,dz='),disp([xmin,Nx,dx;ymin,Ny,dy;zmin,Nz,dz])
+% printf('xmin,Nx,dx;ymin,Ny,dy;zmin,Nz,dz=\n%s\n',num2str([xmin,Nx,dx;ymin,Ny,dy;zmin,Nz,dz]))
 
 % generate the grid
 x = xmin : dx : xmin+(Nx-1)*dx ;                

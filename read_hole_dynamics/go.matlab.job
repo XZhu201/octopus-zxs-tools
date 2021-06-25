@@ -1,0 +1,28 @@
+#!/bin/bash -login
+#PBS -N fast_movie
+#PBS -M xiaosong.zhu@itp.uni-hannover.de
+#PBS -j oe
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=1:00:00
+#PBS -l mem=100gb
+
+
+## Queues, helena, test
+##PBS -q helena       
+
+## Partitions, lena,haku,itp,iqo,enos
+PBS -W x=PARTITION:lena:haku:itp:iqo
+
+## show which computer the job ran on
+echo "Job ran on:" $(hostname)
+
+## load the relevant modules
+module load MATLAB
+
+## change to working directory
+## cd $BIGWORK/mydir
+echo Working directory is $PBS_O_WORKDIR
+cd $PBS_O_WORKDIR
+
+## run the simulation
+matlab -nodesktop -nosplash <read_hole_dynamics.m 1>out 2>err
