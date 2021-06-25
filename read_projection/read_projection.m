@@ -14,6 +14,21 @@ Nhead = 23;
 Lsp = 2;      % the number of spin, 1 or 2 (1 means spin unpolarized)
 Lstate = 4;  % the number of states
 
+block_NE = [1,1,1,0;
+    1,1,1,1];       % the number of electrons initially ocuping in respective states;
+                    % 1st row for sp1, 2nd row for sp2
+                    % columns for different staates, lower to higher
+                    
+if size(block_NE,1) ~= Lsp
+    disp('No. of rows of block_NE does not equal to the No. of spin !!');
+    error('No. of rows of block_NE does not equal to the No. of spin !!');
+end
+
+if size(block_NE,2) ~= Lstate
+    disp('No. of columns of block_NE does not equal to the No. of states !!');
+    error('No. of columns of block_NE does not equal to the No. of states !!');
+end
+
 %% read file
 D=importdata(str_file,' ',Nhead);
 data = D.data;
@@ -34,19 +49,21 @@ for nsp = 1:Lsp
     
     for nleft = 1:Lstate
         
+        NE = block_NE(nsp,nleft);
+        
         temp_all_to_n = zeros(length(t),1);
         
         for nright = 1:Lstate
             
             col_real = col_real + 2;  % shift two columns
-            col_imag = col_imag + 2
+            col_imag = col_imag + 2;
             
             % read data from the file
             data_real = data(:,col_real);
             data_imag = data(:,col_imag);
             data_abs2 = data_real.^2 + data_imag.^2;
             
-            temp_all_to_n = temp_all_to_n + data_abs2;
+            temp_all_to_n = temp_all_to_n + NE * data_abs2;      % Note the use of NE here.
             
             %         figure; plot(t,data_real,t,data_imag,t,data_abs)
             %         figure; plot(t,data_abs)
