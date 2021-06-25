@@ -108,18 +108,12 @@ for nsp = 1:Lsp
     
 end % end of nsp
 
-struct_proj.abs2_all_to_all = temp_all_to_all;
+
 
 %% save
 figure(100);
 legend(str_legend);
 saveas(gcf,'abs2_all_to_n.png');
-
-figure(200);
-plot(t,struct_proj.abs2_all_to_all)
-legend('abs2-all-to-all');
-title('Note the occupation on some excited states may not be included.')
-saveas(gcf,'abs2_all_to_all.png');
 
 save proj_data.mat t struct_proj
 
