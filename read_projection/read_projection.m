@@ -1,3 +1,5 @@
+% put the codes in a "td.general"
+
 % All the data are saved in the structure struct_proj
 
 % About the use of "dynamic expression" with structure, see:
@@ -12,10 +14,10 @@ str_file = 'projections';
 Nhead = 23;
 
 Lsp = 2;      % the number of spin, 1 or 2 (1 means spin unpolarized)
-Lstate = 4;  % the number of states
+Lstate = 8;  % the number of states
 
-NE = [1,1,1,0;
-    1,1,1,1];       % the number of electrons initially ocuping in respective states;
+NE = [1,1,1,0,0,0,0,0;
+    1,1,1,1,0,0,0,0];       % the number of electrons initially ocuping in respective states;
                     % 1st row for sp1, 2nd row for sp2
                     % columns for different staates, lower to higher
                     
@@ -98,7 +100,7 @@ for nsp = 1:Lsp
         hold on;
         plot(t,temp_all_to_n)
         
-        str_legend = [str_legend  string(str_name)] 
+        str_legend = [str_legend  string(str_name)] ;
         % https://ww2.mathworks.cn/help/matlab/matlab_prog/create-string-arrays.html
         
         % all to all
@@ -113,13 +115,19 @@ struct_proj.abs2_all_to_all = temp_all_to_all;
 %% save
 figure(100);
 legend(str_legend);
+xlabel('time [a.u.]')
+ylabel('abs2 projections')
 saveas(gcf,'abs2_all_to_n.png');
+saveas(gcf,'abs2_all_to_n.fig');
 
 figure(200);
 plot(t,struct_proj.abs2_all_to_all)
 legend('abs2-all-to-all');
 title('Note the occupation on some excited states may not be included.')
+xlabel('time [a.u.]')
+ylabel('abs2 projections')
 saveas(gcf,'abs2_all_to_all.png');
+saveas(gcf,'abs2_all_to_all.fig');
 
 save proj_data.mat t struct_proj
 
