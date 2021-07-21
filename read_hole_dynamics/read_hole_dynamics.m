@@ -11,7 +11,8 @@ mkdir svMovie
 
 %% input
 list_num = 0:15:60 ;     % list of index number to be read
-Nhead = 12 ;
+% Nhead = 12 ;
+natom = 
 
 isovalue = 0.1;
 isovalue_hole = 0.01;
@@ -70,7 +71,8 @@ parfor n=1:Lt
     frameNo = list_num(n);
     str_title = sprintf('../output_iter/td.%07d/%s',frameNo,str_filename);
     
-    [~,~,~,rho_t] = f_readcube_volume_v2(str_title, Nhead);
+%     [~,~,~,rho_t] = f_readcube_volume_v2(str_title, Nhead);
+    [~,~,~,rho_t] = f_read_xsf(str_title, natom);
     
     hole = rho_0 - rho_t;
     
