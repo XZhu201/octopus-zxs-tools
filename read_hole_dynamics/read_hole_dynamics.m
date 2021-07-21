@@ -10,8 +10,8 @@
 mkdir svMovie
 
 %% input
-list_num = 0:15:4095 ;     % list of index number to be read
-Nhead = 7 ;
+list_num = 0:15:60 ;     % list of index number to be read
+Nhead = 12 ;
 
 isovalue = 0.1;
 isovalue_hole = 0.01;
@@ -50,7 +50,7 @@ zlabel('z')
 alpha(0.5)
 colorbar
 colormap(jet)
-xlim([-5 5]); ylim([-5 5]); zlim([-5 5]);
+xlim([-15 15]); ylim([-15 15]); zlim([-15 15]);
 saveas(gcf,'./svMovie/surface_3D.png')
 close all;
 
@@ -64,13 +64,13 @@ str_title = sprintf('../output_iter/td.%07d/%s',0,str_filename)
 Lt = length(list_num);
 
 
-parfor n=1:Lt
-%for n=1:Lt
+% parfor n=1:Lt
+for n=1:Lt
 
     frameNo = list_num(n);
     str_title = sprintf('../output_iter/td.%07d/%s',frameNo,str_filename);
     
-    [~,~,~,rho_t] = f_readcube_volume(str_title, Nhead);
+    [~,~,~,rho_t] = f_readcube_volume_v2(str_title, Nhead);
     
     hole = rho_0 - rho_t;
     
