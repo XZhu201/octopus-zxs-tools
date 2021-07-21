@@ -64,8 +64,8 @@ str_title = sprintf('../output_iter/td.%07d/%s',0,str_filename)
 Lt = length(list_num);
 
 
-% parfor n=1:Lt
-for n=1:Lt
+parfor n=1:Lt
+% for n=1:Lt
 
     frameNo = list_num(n);
     str_title = sprintf('../output_iter/td.%07d/%s',frameNo,str_filename);
