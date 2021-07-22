@@ -6,7 +6,8 @@ clc
 clear
 
 %% input
-str_title = '../px.xsf';
+% str_title = '../px.xsf';
+str_ti
 natom = 1;                 % number of atom
 
 isovalue = 0.05;
