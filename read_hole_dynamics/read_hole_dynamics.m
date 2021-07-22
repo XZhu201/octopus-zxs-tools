@@ -11,25 +11,26 @@ mkdir svMovie
 
 %% input
 list_num = 0:15:60 ;     % list of index number to be read
-% Nhead = 12 ;
-natom = 
+Nhead = 12 ;
+natom = 6
 
 isovalue = 0.1;
 isovalue_hole = 0.01;
 isovalue_diff = 0.005;
 
-str_filename = 'density.cube';    % name of the file to load
+% str_filename = 'density.cube';    % name of the file to load
+str_filename = 'density.xsf';
 
-%% parallel computation
-pc = parcluster('local');
-disp('Information of local parcluster:')
-disp(pc); 
-
-try
-    parpool(pc.NumWorkers);
-catch ME
-    fprintf('Error from try: %s \n',ME.message);
-end
+% %% parallel computation
+% pc = parcluster('local');
+% disp('Information of local parcluster:')
+% disp(pc); 
+% 
+% try
+%     parpool(pc.NumWorkers);
+% catch ME
+%     fprintf('Error from try: %s \n',ME.message);
+% end
 
 %% load the time
 str_title = '../td.general/laser';
@@ -42,7 +43,8 @@ clear D data;
 %% read the initial density den_0
 str_title = ['../static/', str_filename];
 
-[x,y,z,rho_0] = f_readcube_volume(str_title, Nhead);
+% [x,y,z,rho_0] = f_readcube_volume(str_title, Nhead);
+[x,y,z,rho_0] = f_read_xsf(str_title, natom);
 
 figure; isosurface(x,y,z,rho_0,isovalue); hold on;  isosurface(x,y,z,rho_0,-isovalue); hold off;
 xlabel('x')
@@ -58,17 +60,18 @@ close all;
 %% read the td density at t=0
 str_title = sprintf('../output_iter/td.%07d/%s',0,str_filename)
 
-[~,~,~,rho_t0] = f_readcube_volume(str_title, Nhead);      % save as rho_t0
-
+% [~,~,~,rho_t0] = f_readcube_volume(str_title, Nhead);      % save as rho_t0
+[~,~,~,rho_t0] = f_read_xsf(str_title, natom);
 
 %% read the td density and calculate the hole density, output figure
 Lt = length(list_num);
 
 
-parfor n=1:Lt
-% for n=1:Lt
+% parfor n=1:Lt
+for n=1:Lt
 
     frameNo = list_num(n);
+%     str_title = sprintf('../output_iter/td.%07d/%s',frameNo,str_filename);
     str_title = sprintf('../output_iter/td.%07d/%s',frameNo,str_filename);
     
 %     [~,~,~,rho_t] = f_readcube_volume_v2(str_title, Nhead);

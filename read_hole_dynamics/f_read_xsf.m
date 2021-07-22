@@ -1,4 +1,4 @@
-function [x,y,z,rho] = f_readcube_xsf( str_title, natom )
+function [x,y,z,rho] = f_read_xsf( str_title, natom )
 
 % This is fast and good~
 % extract the data from the .cube file
@@ -84,11 +84,14 @@ end
 % # Note that, in matlab, the m-th row corresponds to y=m, the n-th column corresponse to x=n
 % # I would like to make the matrxi like that in Matlab
 
-rho = reshape(data,Nz,Ny,Nx);    % the order of dimentions may be wrong !!!!
+rho = reshape(data,Nx,Ny,Nz);    % the order of dimentions may be wrong !!!!
 
-% % we need to swap x and y
+% we need to swap x and y
 rho = permute(rho,[2,1,3]);
 
+temp = x; x = y; y = temp;   % swap the coordinates x,y too
+
+% check norm
 norm_den =  sum(sum(sum( rho ))) .* dx*dy*dz ;
 disp('sum of density='),disp(norm_den)
 
