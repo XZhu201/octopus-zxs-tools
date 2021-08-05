@@ -10,7 +10,7 @@
 mkdir svMovie
 
 %% input
-list_num = 0:15:60 ;     % list of index number to be read
+list_num = 0:5:6250 ;     % list of index number to be read
 Nhead = 12 ;
 natom = 6
 
@@ -91,7 +91,7 @@ for n=1:Lt
     alpha(0.5)
     colorbar
     colormap(jet)
-    xlim([-5 5]); ylim([-5 5]); zlim([-5 5]); 
+    xlim([-15 15]); ylim([-15 15]); zlim([-15 15]); 
     title(['t=',num2str(t(frameNo+1))])        % +1 because the index of t begins from 0
     
     str_savetitle = ['./svMovie/hole',num2str(frameNo)];    
@@ -106,7 +106,7 @@ for n=1:Lt
    alpha(0.5)
    colorbar
    colormap(jet)
-   xlim([-5 5]); ylim([-5 5]); zlim([-5 5]); 
+   xlim([-15 15]); ylim([-15 15]); zlim([-15 15]); 
    title(['t=',num2str(t(frameNo+1))])
     
    str_savetitle = ['./svMovie/dens_diff',num2str(frameNo)];
