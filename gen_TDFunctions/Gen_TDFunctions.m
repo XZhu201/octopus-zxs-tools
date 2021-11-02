@@ -1,7 +1,7 @@
 % Generate TDFunctions
 clc
 clear
-angle = 0;   % in degree
+angle = 30;   % in degree
 
 %% laser parameters
 Ix=1.5e14 * 2;
@@ -31,14 +31,20 @@ tup=Tup*T0;
 %  end
 
 
-%% Ponderomotive radius (linear field)
+%% Ponderomotive radius and Up/w0 (linear field)
 RR = E0/omega/omega ;
 
-str_date = date;
-text = sprintf('The Ponderomotive radius (linear field) is: \n\n %f a.u. \n\n @ %s',RR,str_date);
+Up = E0^2/4/omega/omega;
 
-fid0 = fopen('Ponderomotive_radius.txt','w');
+Up_div_w0 = 3.17*Up / omega;
+
+str_date = date;
+text = sprintf('The Ponderomotive radius (linear field) is: \n\n %f a.u. \n\n Up/w_0 = %f \n\n @ %s',RR,Up_div_w0,str_date);
+
+fid0 = fopen('Ponderomotive.txt','w');
 fprintf(fid0,text);
+
+fclose(fid0);
 
 %% 
 switch ev_flag
