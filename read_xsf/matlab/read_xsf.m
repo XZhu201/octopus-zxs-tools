@@ -1,17 +1,12 @@
-% This is fast and good~
-% extract the data from the .cube file
-% the inporated data are named data
-
-clc
-clear
+function [sum_data,norm] = f_readxsf(str_name,natom)  % str_name is the string except .xsf
 
 %% input
-str_title = '../px.xsf';
-natom = 1;                 % number of atom
+% natom = 1;                 % number of atom
 
-isovalue = 0.05;
+isovalue = 0.005;
 
 %% read file
+str_title = [str_name, '.xsf']
 Nhead = 9+natom;
 
 D=importdata(str_title,' ',Nhead);
@@ -87,20 +82,28 @@ psi_xyz = permute(psi_xyz,[2,1,3]);
 temp = x; x = y; y = temp;   % swap the coordinates x,y too
 
 norm =  sum(sum(sum( abs(psi_xyz).^2 ))) .* dx*dy*dz
+sum_data = sum(sum(sum( psi_xyz ))) .* dx*dy*dz
 % norm =  sum(sum(sum( psi_xyz ))) .* dx*dy*dz/(0.53)^3 
 
 %%%%% plot and save %%%%%
-figure; pcolor( x,y,psi_xyz( :,:,round(Nz/2)-10 ) ); 
+figure; pcolor( x,y,psi_xyz( :,:,round(Nz/2) ) ); 
 xlabel('x')
 ylabel('y')
 shading interp;
-saveas(gcf,'plot_xy.png')
+% saveas(gcf,'plot_xy.png')
+str_tmp = [str_name,'_2DfromXsf.png']
+saveas(gcf,str_tmp);
 
 figure; isosurface(x,y,z,(psi_xyz),isovalue); hold on;  isosurface(x,y,z,(psi_xyz),-isovalue); hold off;
 xlabel('x')
 ylabel('y')
 zlabel('z')
 alpha(0.5)
-saveas(gcf,'surface_3D.png')
+% saveas(gcf,'surface_3D.png')
+str_tmp = [str_name,'_3DfromXsf.png']
+saveas(gcf,str_tmp);
 
-save my_psi_xyz.mat psi_xyz norm   % textdata;
+% save psi
+str_tmp = [str_title,'_psi_xyz']
+save(str_tmp,'psi_xyz','norm','sum_data');
+% save my_psi_xyz.mat psi_xyz norm   % textdata;
