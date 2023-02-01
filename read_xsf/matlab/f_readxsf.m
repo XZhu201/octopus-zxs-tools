@@ -91,19 +91,35 @@ xlabel('x')
 ylabel('y')
 shading interp;
 % saveas(gcf,'plot_xy.png')
-str_tmp = [str_name,'_2DfromXsf.png']
+str_tmp = [str_name,'_2D.png']
 saveas(gcf,str_tmp);
 
-figure; isosurface(x,y,z,(psi_xyz),isovalue); hold on;  isosurface(x,y,z,(psi_xyz),-isovalue); hold off;
+% plot the 3D isosurface
+figure;  
+subplot(121)
+isosurface(x,y,z,(psi_xyz),isovalue); hold on;  isosurface(x,y,z,(psi_xyz),-isovalue); hold off;
 xlabel('x')
 ylabel('y')
 zlabel('z')
 alpha(0.5)
-% saveas(gcf,'surface_3D.png')
-str_tmp = [str_name,'_3DfromXsf.png']
+view(3)
+
+subplot(122)
+isosurface(x,y,z,(psi_xyz),isovalue); hold on;  isosurface(x,y,z,(psi_xyz),-isovalue); hold off;
+xlabel('x')
+ylabel('y')
+zlabel('z')
+alpha(0.5)
+view(-37.5+90, 30+30)   % the view with a 90 & 30 rotation
+
+str_tmp = [str_name,'_3D.png']
+saveas(gcf,str_tmp);
+
+% save .fig if needed
+str_tmp = [str_name,'_3D.fig']
 saveas(gcf,str_tmp);
 
 % save psi
-str_tmp = [str_title,'_psi_xyz']
+str_tmp = [str_title,'.mat']
 save(str_tmp,'psi_xyz','norm','sum_data');
 % save my_psi_xyz.mat psi_xyz norm   % textdata;
