@@ -24,4 +24,6 @@ for nn = 1:Nindex
     str_save = sprintf('sv_snapshots_vks/td%07d', index(nn));
     saveas(gcf,str_save,'png');  
     
+    close;
+    
 end % end of nn

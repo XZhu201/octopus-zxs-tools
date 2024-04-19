@@ -1,5 +1,5 @@
 %% input
-index = 0:50:600 ;  %  0:50:77225
+index = 0:50:11750 ;  %  0:50:77225
 
 %% initialization
 mkdir sv_snapshots_density;      % figures are saved to this fold for further operation
@@ -23,5 +23,7 @@ for nn = 1:Nindex
     
     str_save = sprintf('sv_snapshots_density/td%07d', index(nn));
     saveas(gcf,str_save,'png');  
+    
+    close;
     
 end % end of nn
